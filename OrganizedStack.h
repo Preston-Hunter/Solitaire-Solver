@@ -5,11 +5,14 @@
 #ifndef SOLITAIRE_SOLVER_ORGANIZEDSTACK_H
 #define SOLITAIRE_SOLVER_ORGANIZEDSTACK_H
 #include "Card.h"
-
+#include <vector>
+using std::vector;
 class OrganizedStack {
 private:
     File file;
-    Card[13] cards;
+    vector<Card> cards = vector<Card>();
+public:
+    OrganizedStack(File f);
 };
 
 

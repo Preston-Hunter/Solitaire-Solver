@@ -3,3 +3,7 @@
 //
 
 #include "OrganizedStack.h"
+
+OrganizedStack::OrganizedStack(File f) {
+    this->file = f;
+}

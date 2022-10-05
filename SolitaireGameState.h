@@ -4,11 +4,12 @@
 
 #ifndef SOLITAIRE_SOLVER_SOLITAIREGAMESTATE_H
 #define SOLITAIRE_SOLVER_SOLITAIREGAMESTATE_H
-
+#include "OrganizedStack.h"
+#include "Card.h"
 
 class SolitaireGameState {
 private:
-    diamondOrganizedStack;
+    OrganizedStack diamondStack(File.DIAMOND);
 };
 
 
