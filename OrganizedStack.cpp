@@ -4,6 +4,6 @@
 
 #include "OrganizedStack.h"
 
-OrganizedStack::OrganizedStack(File f) {
+OrganizedStack::OrganizedStack(cardFile f) {
     this->file = f;
 }

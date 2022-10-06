@@ -11,7 +11,7 @@ using std::cout;
 
 
 
-string fileToString(File f){
+string fileToString(cardFile f){
     string str = "";
     if (f == CLUBS){
         str = "CLUBS";
@@ -57,7 +57,7 @@ void Card::setRank(int rank) {
     Card::rank = rank;
 }
 
-File Card::getFile() const {
+cardFile Card::getFile() const {
     return file;
 }
 

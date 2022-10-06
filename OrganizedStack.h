@@ -9,10 +9,10 @@
 using std::vector;
 class OrganizedStack {
 private:
-    File file;
+    cardFile file;
     vector<Card> cards = vector<Card>();
 public:
-    OrganizedStack(File f);
+    explicit OrganizedStack(cardFile f);
 };
 
 

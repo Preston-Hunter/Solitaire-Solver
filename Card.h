@@ -9,16 +9,16 @@
 using std::ostream;
 using std::string;
 
-enum File{CLUBS, DIAMONDS, HEARTS, SPADES};
+enum cardFile{CLUBS, DIAMONDS, HEARTS, SPADES};
 
-string fileToString(File f);
+string fileToString(cardFile f);
 string rankToString(int r);
 
 
 class Card {
 private:
     int rank;
-    File file;
+    cardFile file;
     bool revealed;
 
 public:
@@ -26,7 +26,7 @@ public:
 
     void setRank(int rank);
 
-    File getFile() const;
+    cardFile getFile() const;
 
     void setFile(int f);
 
