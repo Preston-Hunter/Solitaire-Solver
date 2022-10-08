@@ -18,6 +18,7 @@ public:
     Card copyTopCard();
     string toString();
     bool addCardByFileAndRank(const Card& c);
+    Card removeAndReturnTopCard();
 
     friend ostream& operator << (ostream& outs, OrganizedStack& org);
 

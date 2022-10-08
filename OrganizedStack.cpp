@@ -55,3 +55,14 @@ bool OrganizedStack::addCardByFileAndRank(const Card& c) {
     }
     return false;
 }
+
+Card OrganizedStack::removeAndReturnTopCard() {
+    if (!cards.empty()){
+        Card copy = copyTopCard();
+        removeTopCard();
+        return copy;
+    }
+    // if no cards in stack return null card
+    else
+        return Card(0, NULLCARD, true);
+}
