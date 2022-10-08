@@ -103,3 +103,8 @@ ostream& operator << (ostream& outs, Card& card){
     outs << card.toString();
     return outs;
 }
+
+Card::Card(const Card &toCopy) {
+    this->file = toCopy.file;
+    this->rank = toCopy.rank;
+}

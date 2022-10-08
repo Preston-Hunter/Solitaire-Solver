@@ -6,12 +6,15 @@
 #define SOLITAIRE_SOLVER_SOLITAIREGAMESTATE_H
 #include "OrganizedStack.h"
 #include "Card.h"
-using cardFile::DIAMONDS;
 
 
 class SolitaireGameState {
+
 private:
-    OrganizedStack diamondStack(DIAMONDS);
+    OrganizedStack diamondStack = OrganizedStack(DIAMONDS);
+    OrganizedStack clubSack = OrganizedStack(CLUBS);
+    OrganizedStack heartStack = OrganizedStack(HEARTS);
+    OrganizedStack spadeStack = OrganizedStack(SPADES);
 
 
 };

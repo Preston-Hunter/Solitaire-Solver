@@ -9,7 +9,7 @@
 using std::ostream;
 using std::string;
 
-enum cardFile{CLUBS, DIAMONDS, HEARTS, SPADES};
+enum cardFile{CLUBS, DIAMONDS, HEARTS, SPADES, NULLCARD};
 
 string fileToString(cardFile f);
 string rankToString(int r);
@@ -37,6 +37,7 @@ public:
 
 
     Card(int rank, int file, bool rev);
+    Card(Card const &toCopy);
 
     friend bool operator == (Card& lhs, Card& rhs);
     friend ostream& operator << (ostream& outs, Card& card);
