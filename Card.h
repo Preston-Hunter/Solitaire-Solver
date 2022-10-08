@@ -28,31 +28,29 @@ public:
     void setColor(cardColor color);
 
 public:
-    int getRank() const;
-
-    void setRank(int rank);
-
-
-    cardFile getFile() const;
-
-    void setFile(int f);
-    void setFile(cardFile f);
-    bool isRevealed() const;
-
-    void setRevealed(bool revealed);
-    string toString();
-
-
     Card(int rank, int file, bool rev);
     Card(int rank, cardFile file, bool rev);
-
     Card(Card const &toCopy);
     Card();
 
+
+
+    int getRank() const;
+    void setRank(int rank);
+
+    cardFile getFile() const;
+    void setFile(int f);
+    void setFile(cardFile f);
+
+    bool isRevealed() const;
+    void setRevealed(bool revealed);
+
     cardColor fileToColor(cardFile f);
 
-    friend bool operator == (Card& lhs, Card& rhs);
+    string toString();
     friend ostream& operator << (ostream& outs, Card& card);
+
+    friend bool operator == (Card& lhs, Card& rhs);
 
 };
 

@@ -86,6 +86,9 @@ bool Pile::copySubStackOntoAnotherPile(Pile copyOnto, int start) {
     //Check if initial card can be placed on Topcard of copyOnto
     if (!canCardBePlacedOnTopOfOtherCard(cards[start], copyOnto.getCards()[copyOnto.getCards().size() - 1]))
         return false;
+    //Check that initial card is revealed. If not then we do not move it
+    if (!cards[start].isRevealed())
+        return false;
 
     // Copy all cards from cards on top of copyOnto
     for (int ind = start; ind <= end; ind++){
