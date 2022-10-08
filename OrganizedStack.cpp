@@ -11,9 +11,8 @@ OrganizedStack::OrganizedStack(cardFile f) {
     this->file = f;
 }
 
-bool OrganizedStack::addCard(Card c) {
+void OrganizedStack::addCard(Card c) {
     cards.push_back(c);
-    return true;
 }
 
 void OrganizedStack::removeTopCard() {
@@ -38,10 +37,7 @@ string OrganizedStack::toString(){
     return str;
 }
 
-ostream& operator << (ostream& outs, OrganizedStack& org){
-    outs << org.toString();
-    return outs;
-}
+
 
 bool OrganizedStack::addCardByFileAndRank(const Card& c) {
     if (c.getFile() == this->file){
@@ -65,4 +61,9 @@ Card OrganizedStack::removeAndReturnTopCard() {
     // if no cards in stack return null card
     else
         return Card(0, NULLCARD, true);
+}
+
+ostream& operator << (ostream& outs, OrganizedStack& org){
+    outs << org.toString();
+    return outs;
 }

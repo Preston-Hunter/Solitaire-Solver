@@ -10,6 +10,7 @@ using std::ostream;
 using std::string;
 
 enum cardFile{CLUBS, DIAMONDS, HEARTS, SPADES, NULLCARD};
+enum cardColor{RED, BLACK, NULLCOLOR};
 
 string fileToString(cardFile f);
 string rankToString(int r);
@@ -20,16 +21,22 @@ private:
     int rank;
     cardFile file;
     bool revealed;
+    cardColor color;
+public:
+    cardColor getColor() const;
+
+    void setColor(cardColor color);
 
 public:
     int getRank() const;
 
     void setRank(int rank);
 
+
     cardFile getFile() const;
 
     void setFile(int f);
-
+    void setFile(cardFile f);
     bool isRevealed() const;
 
     void setRevealed(bool revealed);
@@ -37,7 +44,12 @@ public:
 
 
     Card(int rank, int file, bool rev);
+    Card(int rank, cardFile file, bool rev);
+
     Card(Card const &toCopy);
+    Card();
+
+    cardColor fileToColor(cardFile f);
 
     friend bool operator == (Card& lhs, Card& rhs);
     friend ostream& operator << (ostream& outs, Card& card);

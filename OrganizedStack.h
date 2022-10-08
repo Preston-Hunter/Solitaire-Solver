@@ -13,7 +13,7 @@ private:
     vector<Card> cards = vector<Card>();
 public:
     explicit OrganizedStack(cardFile f);
-    bool addCard(Card c);
+    void addCard(Card c);
     void removeTopCard();
     Card copyTopCard();
     string toString();

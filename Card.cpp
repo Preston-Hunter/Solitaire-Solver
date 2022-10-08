@@ -46,8 +46,27 @@ Card::Card(int rank, int file, bool rev) {
     this->rank = rank;
     this->setFile(file);
     revealed = rev;
+    this->color = fileToColor(getFile());
 }
 
+Card::Card(int rank, cardFile file, bool rev) {
+    this->rank = rank;
+    this->setFile(file);
+    revealed = rev;
+    this->color = fileToColor(getFile());
+}
+
+Card::Card(const Card &toCopy) {
+    this->file = toCopy.file;
+    this->rank = toCopy.rank;
+    this->color = toCopy.color;
+}
+
+Card::Card(){
+    file = NULLCARD;
+    color = NULLCOLOR;
+    rank = 0;
+}
 
 int Card::getRank() const {
     return rank;
@@ -74,6 +93,11 @@ void Card::setFile(int f) {
     else
         file = SPADES;
 
+}
+
+
+void Card::setFile(cardFile f) {
+    this->file = f;
 }
 
 bool Card::isRevealed() const {
@@ -104,7 +128,22 @@ ostream& operator << (ostream& outs, Card& card){
     return outs;
 }
 
-Card::Card(const Card &toCopy) {
-    this->file = toCopy.file;
-    this->rank = toCopy.rank;
+
+cardColor Card::fileToColor(cardFile f){
+    if (file == CLUBS || file == SPADES)
+        return BLACK;
+    if (file == HEARTS || file == DIAMONDS)
+        return RED;
+    return NULLCOLOR;
 }
+
+
+cardColor Card::getColor() const {
+    return color;
+}
+
+void Card::setColor(cardColor c) {
+    Card::color = c;
+}
+
+
