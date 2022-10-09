@@ -27,6 +27,13 @@ public:
     void removeCardAtCurrentIndex();
     void incrementCurrentIndex();
     void decrementCurrentIndex();
+
+    string toString();
+
+    friend bool operator == (const DrawPile& lhs, const DrawPile& rhs);
+    friend bool operator != (const DrawPile& lhs, const DrawPile& rhs);
+    friend ostream& operator << (ostream& outs, DrawPile d);
+
 };
 
 

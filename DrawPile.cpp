@@ -3,7 +3,7 @@
 //
 
 #include "DrawPile.h"
-
+#include "HelperFunctions.h"
 const vector<Card> &DrawPile::getCards() const {
     return cards;
 }
@@ -46,4 +46,31 @@ void DrawPile::decrementCurrentIndex() {
     //if no cards in drawPile we set it to 0 just to cover any edge cases
     // that may arise from calling this from removeCardAtCurrentIndex
     currentIndex = 0;
+}
+
+
+string DrawPile::toString(){
+    string str = "";
+    for (int i = 0; i < cards.size(); i++){
+        str += cards[i].toString() + " | ";
+    }
+    //why does this still run without a crash when i dont include this return statement?
+    return str;
+}
+
+bool operator == (const DrawPile& lhs, const DrawPile& rhs){
+    if (cardVectorsEqual(lhs.getCards(), rhs.getCards()))
+        return true;
+    return false;
+}
+
+bool operator != (const DrawPile& lhs, const DrawPile& rhs){
+    if (cardVectorsEqual(lhs.getCards(), rhs.getCards()))
+        return false;
+    return true;
+}
+
+ostream& operator << (ostream& outs, DrawPile d){
+    outs << d.toString();
+    return outs;
 }
