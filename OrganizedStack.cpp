@@ -4,8 +4,28 @@
 
 #include "OrganizedStack.h"
 #include "iostream"
+#include "HelperFunctions.h"
 using std::cout;
 using std::endl;
+
+
+cardFile OrganizedStack::getFile() const {
+    return file;
+}
+
+void OrganizedStack::setFile(cardFile file) {
+    OrganizedStack::file = file;
+}
+
+const vector<Card> &OrganizedStack::getCards() const {
+    return cards;
+}
+
+void OrganizedStack::setCards(const vector<Card> &cards) {
+    OrganizedStack::cards = cards;
+}
+
+
 
 OrganizedStack::OrganizedStack(cardFile f) {
     this->file = f;
@@ -63,7 +83,20 @@ Card OrganizedStack::removeAndReturnTopCard() {
         return Card(0, NULLCARD, true);
 }
 
+bool operator == (const OrganizedStack& lhs, const OrganizedStack& rhs){
+    if (cardVectorsEqual(lhs.getCards(), rhs.getCards()) && lhs.getFile() == rhs.getFile())
+        return true;
+    return false;
+}
+bool operator != (const OrganizedStack& lhs, const OrganizedStack& rhs){
+    if (cardVectorsEqual(lhs.getCards(), rhs.getCards()) && lhs.getFile() == rhs.getFile())
+        return false;
+    return true;
+}
+
+
 ostream& operator << (ostream& outs, OrganizedStack& org){
     outs << org.toString();
     return outs;
 }
+
