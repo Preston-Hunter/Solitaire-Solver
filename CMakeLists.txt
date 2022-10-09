@@ -4,4 +4,4 @@ project(solitaire_solver)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(solitaire_solver main.cpp Card.h Card.cpp SolitaireGameState.cpp SolitaireGameState.h
-        OrganizedStack.cpp OrganizedStack.h Pile.cpp Pile.h DrawPile.cpp DrawPile.h)
+        OrganizedStack.cpp OrganizedStack.h Pile.cpp Pile.h DrawPile.cpp DrawPile.h SolitaireGame.h SolitaireGame.cpp)

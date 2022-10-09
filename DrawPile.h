@@ -11,8 +11,10 @@ using std::vector;
 
 class DrawPile {
 private:
+    // all the cards in the draw pile of solitaire
     vector<Card> cards = vector<Card>();
     int numCard;
+    //Represents what Card user/program is viewing from DrawPiles cards
     int currentIndex = 0;
 
 public:

@@ -7,7 +7,7 @@
 #include "OrganizedStack.h"
 #include "Card.h"
 #include "Pile.h"
-
+#include "DrawPile.h"
 class SolitaireGameState {
 
 private:
@@ -26,7 +26,12 @@ private:
     Pile p6 = Pile();
     Pile p7 = Pile();
 
+    vector<Pile> allPiles = vector<Pile>();
 
+    //Create Draw Pile
+    DrawPile d = DrawPile();
+public:
+    SolitaireGameState();
 
 };
 
