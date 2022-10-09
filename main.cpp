@@ -2,7 +2,13 @@
 #include "Card.h"
 //#include "OrganizedStack.h"
 #include "TestCases.h"
+#include "random"
+#include <ctime>
+
 #include "HelperFunctions.h"
+#include "algorithm"
+using std::shuffle;
+
 using std::cout;
 using std::endl;
 int main() {
@@ -18,6 +24,7 @@ int main() {
     d.push_back(Card(c1));
     //cout << cardVectorsEqual(c,d);
     // test();
+
 
     return 0;
 }

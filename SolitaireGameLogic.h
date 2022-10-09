@@ -8,6 +8,7 @@
 #include "Pile.h"
 #include "DrawPile.h"
 
+
 class SolitaireGameLogic {
 private:
     //Initialize the organized stacks, which start empty and filled by player actions
@@ -29,6 +30,20 @@ private:
 
     //Create Draw Pile
     DrawPile d = DrawPile();
+
+    int numTurns = 0;
+public:
+
+    SolitaireGameLogic();
+    void initializeGame();
+    vector<Card> createDeck();
+
+    bool moveCardFromPileToOrgStack();
+    bool moveCardFromOrgStackToPile();
+    bool moveCardFromDrawToOrg();
+    bool moveCardFromDrawToPile();
+    bool canCardBePlacedOnTopOfOtherCard(const Card& toBePlaced, const Card& beingPlacedOn);
+
 };
 
 

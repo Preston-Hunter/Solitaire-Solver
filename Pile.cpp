@@ -26,7 +26,8 @@ bool Pile::addCardBasedOnTopCard(const Card& c) {
  */
 bool Pile::moveSubStackFromThisPileToOther(Pile other, int start) {
 
-    //This returns false if either start index is not in bounds, or it is an illegal move
+    //This returns false if either start index is not in bounds, or it is an illegal move and will not peform the copy
+    // if false
     bool success = copySubStackOntoAnotherPile(other, start);
 
     //if unsuccessful return false
@@ -77,7 +78,7 @@ bool Pile::revealTopCard() {
 
 //Bounds are inclusive
 bool Pile::copySubStackOntoAnotherPile(Pile copyOnto, int start) {
-    //a substack always goes to the topcard
+    //a substack always goes to the topcard, which has the last index available in cards
     int end = cards.size() - 1;
 
     //Check bounds are within range
@@ -88,6 +89,10 @@ bool Pile::copySubStackOntoAnotherPile(Pile copyOnto, int start) {
     if (!canCardBePlacedOnTopOfOtherCard(cards[start], copyOnto.getCards()[copyOnto.getCards().size() - 1]))
         return false;
     //Check that initial card is revealed. If not then we do not move it
+    // if we wanted to be extra we would check all cards in the range. but due to how solitaire is initialized
+    // (as a game and programmatically) it will never be the case that a revealed card has an unrevealed card on top of it
+    // and that a revealed card has another revealed card on top of it that legally cant be placed on top of
+    // said card
     if (!cards[start].isRevealed())
         return false;
 
