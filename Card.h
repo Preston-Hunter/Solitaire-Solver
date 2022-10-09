@@ -6,9 +6,10 @@
 #define SOLITAIRE_SOLVER_CARD_H
 #include "string"
 #include "iostream"
+#include "vector"
 using std::ostream;
 using std::string;
-
+using std::vector;
 enum cardFile{CLUBS, DIAMONDS, HEARTS, SPADES, NULLCARD};
 enum cardColor{RED, BLACK, NULLCOLOR};
 
@@ -50,7 +51,8 @@ public:
     string toString();
     friend ostream& operator << (ostream& outs, Card& card);
 
-    friend bool operator == (Card& lhs, Card& rhs);
+    friend bool operator == (const Card& lhs, const Card& rhs);
+    friend bool operator != (const Card& lhs, const Card& rhs);
 
 };
 

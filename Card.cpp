@@ -119,16 +119,6 @@ string Card::toString(){
 }
 
 
-bool operator == (Card& lhs, Card& rhs){
-    if ((lhs.rank == rhs.rank) && (lhs.file == rhs.file) && (lhs.revealed == rhs.revealed))
-        return true;
-    return false;
-}
-
-ostream& operator << (ostream& outs, Card& card){
-    outs << card.toString();
-    return outs;
-}
 
 
 cardColor Card::fileToColor(cardFile f){
@@ -147,5 +137,24 @@ cardColor Card::getColor() const {
 void Card::setColor(cardColor c) {
     Card::color = c;
 }
+
+bool operator == (const Card& lhs, const Card& rhs){
+    if ((lhs.getRank() == rhs.getRank()) && (lhs.getFile() == rhs.getFile()) && (lhs.isRevealed() == rhs.isRevealed()))
+        return true;
+    return false;
+}
+
+bool operator!=(const Card &lhs, const Card &rhs) {
+    if ((lhs.getRank() == rhs.getRank()) && (lhs.getFile() == rhs.getFile()) && (lhs.isRevealed() == rhs.isRevealed()))
+        return false;
+    return true;
+}
+
+ostream& operator << (ostream& outs, Card& card){
+    outs << card.toString();
+    return outs;
+}
+
+
 
 
