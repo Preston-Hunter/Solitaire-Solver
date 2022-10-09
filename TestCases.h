@@ -10,3 +10,5 @@
 bool testCard();
 
 int test();
+
+bool testCardEquality();

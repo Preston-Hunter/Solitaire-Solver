@@ -92,12 +92,14 @@ void Card::setFile(int f) {
         file = SPADES;
     else
         file = SPADES;
+    setColor(fileToColor(file));
 
 }
 
 
 void Card::setFile(cardFile f) {
     this->file = f;
+    setColor(fileToColor(file));
 }
 
 bool Card::isRevealed() const {
