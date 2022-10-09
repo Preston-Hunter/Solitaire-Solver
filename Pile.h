@@ -34,6 +34,9 @@ public:
 
 
     string toString();
+    friend bool operator != (const Pile& lhs, const Pile& rhs);
+    friend bool operator == (const Pile& lhs, const Pile& rhs);
+
     friend ostream& operator << (ostream& outs, Pile& p);
 };
 

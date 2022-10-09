@@ -4,6 +4,7 @@
 
 #include "Pile.h"
 #include "Card.h"
+#include "HelperFunctions.h"
 //todo make error handling
 void Pile::addCard(Card c) {
     cards.push_back(c);
@@ -123,7 +124,21 @@ string Pile::toString() {
     return str;
 }
 
+bool operator == (const Pile& lhs, const Pile& rhs){
+    if (cardVectorsEqual(lhs.getCards(), rhs.getCards()))
+        return true;
+    return false;
+}
+
+bool operator != (const Pile& lhs, const Pile& rhs){
+    if (cardVectorsEqual(lhs.getCards(), rhs.getCards()))
+        return false;
+    return true;
+}
+
+
 ostream& operator << (ostream& outs, Pile& p){
     outs << p.toString();
     return outs;
 }
+
