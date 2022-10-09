@@ -74,3 +74,8 @@ ostream& operator << (ostream& outs, DrawPile d){
     outs << d.toString();
     return outs;
 }
+
+//todo go thru code and determine if all push backs should use copy constructor
+void DrawPile::addInitialCard(Card c) {
+    cards.push_back(Card(c));
+}

@@ -19,6 +19,24 @@ void SolitaireGameLogic::initializeGame() {
     //todo change source of randomness
     shuffle(allCards.begin(), allCards.end(), std::default_random_engine(std::rand()));
 
+    int currentCardIndex = 0;
+
+    //Fill Piles
+    //1 Card goes in p1, 2 in p2, etc until p7
+    for(int i = 0; i < 7; i++){
+        int numCardsToAdd = i + 1;
+        for (int j = 0; j < numCardsToAdd; j++){
+            allPiles[i].addCard(allCards[currentCardIndex]);
+            currentCardIndex++;
+        }
+    }
+
+    //Rest of cards go in loose draw pile
+    for (currentCardIndex; currentCardIndex < allCards.size(); currentCardIndex++){
+        drawPile.addInitialCard(allCards[currentCardIndex]);
+    }
+
+    //Game is now initialized
 
 }
 

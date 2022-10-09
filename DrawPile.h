@@ -28,6 +28,8 @@ public:
     void incrementCurrentIndex();
     void decrementCurrentIndex();
 
+    void addInitialCard(Card c);
+
     string toString();
 
     friend bool operator == (const DrawPile& lhs, const DrawPile& rhs);

@@ -29,7 +29,7 @@ private:
     vector<Pile> allPiles = vector<Pile>();
 
     //Create Draw Pile
-    DrawPile d = DrawPile();
+    DrawPile drawPile = DrawPile();
 
     int numTurns = 0;
 public:
