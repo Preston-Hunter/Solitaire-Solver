@@ -112,7 +112,7 @@ void Card::setRevealed(bool revealed) {
 
 
 
-string Card::toString(){
+string Card::toString() const{
     string str = "";
     str += rankToString(getRank()) + " of " + fileToString(getFile());
     return str;
@@ -150,7 +150,7 @@ bool operator!=(const Card &lhs, const Card &rhs) {
     return true;
 }
 
-ostream& operator << (ostream& outs, Card& card){
+ostream& operator << (ostream& outs,const Card& card){
     outs << card.toString();
     return outs;
 }

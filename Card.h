@@ -48,8 +48,8 @@ public:
 
     cardColor fileToColor(cardFile f);
 
-    string toString();
-    friend ostream& operator << (ostream& outs, Card& card);
+    string toString() const;
+    friend ostream& operator << (ostream& outs, const Card& card);
 
     friend bool operator == (const Card& lhs, const Card& rhs);
     friend bool operator != (const Card& lhs, const Card& rhs);

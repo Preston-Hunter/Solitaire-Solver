@@ -12,3 +12,7 @@ bool testCard();
 int test();
 
 bool testCardEquality();
+
+bool testOrganizedStackEquality();
+
+

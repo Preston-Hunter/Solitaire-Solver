@@ -48,7 +48,7 @@ Card OrganizedStack::copyTopCard() {
 
 
 
-string OrganizedStack::toString(){
+string OrganizedStack::toString() const{
     string str = "";
     for (int i = 0; i < cards.size(); i++){
         str += cards[i].toString() + " | ";
@@ -63,6 +63,8 @@ bool OrganizedStack::addCardByFileAndRank(const Card& c) {
     if (c.getFile() == this->file){
         if (c.getRank() == 1 && cards.empty())
             addCard(c);
+        else if (cards.empty())
+            return false;
         else if (c.getRank() - cards[cards.size()-1].getRank() == 1)
             addCard(c);
         else
@@ -84,8 +86,11 @@ Card OrganizedStack::removeAndReturnTopCard() {
 }
 
 bool operator == (const OrganizedStack& lhs, const OrganizedStack& rhs){
-    if (cardVectorsEqual(lhs.getCards(), rhs.getCards()) && lhs.getFile() == rhs.getFile())
+    //weird error
+    if (cardVectorsEqual(lhs.getCards(), rhs.getCards()) && (lhs.getFile() == rhs.getFile())) {
+        cout << "evalled to true" << endl;
         return true;
+    }
     return false;
 }
 bool operator != (const OrganizedStack& lhs, const OrganizedStack& rhs){
@@ -95,7 +100,7 @@ bool operator != (const OrganizedStack& lhs, const OrganizedStack& rhs){
 }
 
 
-ostream& operator << (ostream& outs, OrganizedStack& org){
+ostream& operator << (ostream& outs, const OrganizedStack& org){
     outs << org.toString();
     return outs;
 }

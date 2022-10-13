@@ -24,13 +24,13 @@ public:
     void addCard(Card c);
     void removeTopCard();
     Card copyTopCard();
-    string toString();
+    string toString() const;
     bool addCardByFileAndRank(const Card& c);
     Card removeAndReturnTopCard();
 
     friend bool operator != (const OrganizedStack& lhs, const OrganizedStack& rhs);
     friend bool operator == (const OrganizedStack& lhs, const OrganizedStack& rhs);
-    friend ostream& operator << (ostream& outs, OrganizedStack& org);
+    friend ostream& operator << (ostream& outs, const OrganizedStack& org);
 
 };
 

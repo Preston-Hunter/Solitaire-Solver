@@ -22,8 +22,8 @@ int main() {
     vector<Card> d = vector<Card>();
     d.push_back(Card(c2));
     d.push_back(Card(c1));
-    //cout << cardVectorsEqual(c,d);
-    // test();
+
+    test();
 
 
     return 0;
