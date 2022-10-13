@@ -37,7 +37,7 @@ Card::Card(){
     revealed = true;
 }
 
-string fileToString(cardFile f){
+string fileToSimpleString(cardFile f){
     string str = "";
     if (f == CLUBS){
         str = "CLUBS";
@@ -51,6 +51,28 @@ string fileToString(cardFile f){
     else
         str = "SPADES";
     return str;
+}
+
+string fileToString(cardFile f){
+    string file = "";
+    switch (f) {
+        case (SPADES):
+            file = char(6);
+            break;
+        case (HEARTS):
+            file = char(3);
+            break;
+        case (DIAMONDS):
+            file = char(4);
+            break;
+        case (CLUBS):
+            file = char(5);
+            break;
+        default:
+            file = "?";
+
+    }
+    return file;
 }
 
 
@@ -129,25 +151,19 @@ void Card::setRevealed(bool revealed) {
 
 string Card::toString() const{
     string str = "";
+    if (!isRevealed())
+        return "??";
 
-    string file = "";
-    switch (this->file) {
-        case (SPADES):
-            file = char(6);
-            break;
-        case (HEARTS):
-            file = char(3);
-            break;
-        case (DIAMONDS):
-            file = char(4);
-            break;
-        case (CLUBS):
-            file = char(5);
-            break;
-        default:
-            file = "?";
+    string file = fileToString(this->file);
 
-    }
+    str += rankToSimpleString(getRank()) + file;
+    return str;
+}
+
+string Card::toStringShowAll() const{
+    string str = "";
+
+    string file = fileToString(this->file);
 
     str += rankToSimpleString(getRank()) + file;
     return str;
@@ -155,7 +171,7 @@ string Card::toString() const{
 
 string Card::toStringBasic() const{
     string str = "";
-    str += rankToString(getRank()) + " of " + fileToString(getFile());
+    str += rankToString(getRank()) + " of " + fileToSimpleString(getFile());
     return str;
 }
 

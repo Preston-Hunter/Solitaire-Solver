@@ -13,9 +13,10 @@ class SolitaireGameLogic {
 private:
     //Initialize the organized stacks, which start empty and filled by player actions
     OrganizedStack diamondStack = OrganizedStack(DIAMONDS);
-    OrganizedStack clubSack = OrganizedStack(CLUBS);
+    OrganizedStack clubStack = OrganizedStack(CLUBS);
     OrganizedStack heartStack = OrganizedStack(HEARTS);
     OrganizedStack spadeStack = OrganizedStack(SPADES);
+    vector<OrganizedStack> allOrgStacks = vector<OrganizedStack>();
 
     //Initialize the Piles, starting empty and will be filled later to their initial state by program
     Pile p1 = Pile();
@@ -43,8 +44,13 @@ public:
     bool moveCardFromDrawToOrg(DrawPile draw, OrganizedStack org);
     bool moveCardFromDrawToPile(DrawPile draw, Pile p);
     bool canCardBePlacedOnTopOfOtherCard(const Card& toBePlaced, const Card& beingPlacedOn);
+    bool moveCardFromDrawAtIndexToOrg(DrawPile draw, OrganizedStack org, int ind);
+    bool moveCardFromDrawAtIndexToToPile(DrawPile draw, Pile p, int ind);
 
-};
+    string toString() const;
+
+    friend ostream& operator << (ostream& outs, const SolitaireGameLogic& sol);
+    };
 
 
 #endif //SOLITAIRE_SOLVER_SOLITAIREGAMELOGIC_H

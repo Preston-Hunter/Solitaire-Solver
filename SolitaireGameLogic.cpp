@@ -20,6 +20,10 @@ SolitaireGameLogic::SolitaireGameLogic() {
     allPiles.push_back(p6);
     allPiles.push_back(p7);
 
+    allOrgStacks.push_back(clubStack);
+    allOrgStacks.push_back(diamondStack);
+    allOrgStacks.push_back(heartStack);
+    allOrgStacks.push_back(spadeStack);
 
 
 
@@ -44,10 +48,11 @@ void SolitaireGameLogic::initializeGame() {
             allPiles[i].addCard(allCards[currentCardIndex]);
             currentCardIndex++;
         }
+        allPiles[i].revealTopCard();
     }
 
     //Rest of cards go in loose draw pile
-    for (currentCardIndex; currentCardIndex < allCards.size(); currentCardIndex++){
+    for (; currentCardIndex < allCards.size(); currentCardIndex++){
         drawPile.addInitialCard(allCards[currentCardIndex]);
     }
 
@@ -96,15 +101,52 @@ bool SolitaireGameLogic::moveTopCardFromOrgStackToPile(OrganizedStack org, Pile 
 }
 
 bool SolitaireGameLogic::moveCardFromDrawToOrg(DrawPile draw, OrganizedStack org) {
-//    if(!draw.getCards().empty()){
-//        //bool added = org.addCardByFileAndRank()
-//    }
+    if(!draw.getCards().empty()){
+        bool added = org.addCardByFileAndRank(*draw.getCardAtCurrentIndex());
+        if (added){
+            draw.removeCardAtCurrentIndex();
+            return true;
+        }
+    }
     return false;
 }
 
 bool SolitaireGameLogic::moveCardFromDrawToPile(DrawPile draw, Pile p) {
+    if(!draw.getCards().empty()){
+        bool added = p.addCardBasedOnTopCard(*draw.getCardAtCurrentIndex());
+        if (added){
+            draw.removeCardAtCurrentIndex();
+            return true;
+        }
+    }
     return false;
 }
+
+
+
+
+bool SolitaireGameLogic::moveCardFromDrawAtIndexToOrg(DrawPile draw, OrganizedStack org, int ind) {
+    if(!draw.getCards().empty()){
+        bool added = org.addCardByFileAndRank(*draw.getCardAtIndex(ind));
+        if (added){
+            draw.removeCardAtCurrentIndex();
+            return true;
+        }
+    }
+    return false;
+}
+
+bool SolitaireGameLogic::moveCardFromDrawAtIndexToToPile(DrawPile draw, Pile p, int ind) {
+    if(!draw.getCards().empty()){
+        bool added = p.addCardBasedOnTopCard(*draw.getCardAtIndex(ind));
+        if (added){
+            draw.removeCardAtCurrentIndex();
+            return true;
+        }
+    }
+    return false;
+}
+
 
 bool SolitaireGameLogic::canCardBePlacedOnTopOfOtherCard(const Card& toBePlaced, const Card& beingPlacedOn) {
     if (toBePlaced.getColor() == beingPlacedOn.getColor())
@@ -112,4 +154,27 @@ bool SolitaireGameLogic::canCardBePlacedOnTopOfOtherCard(const Card& toBePlaced,
     if (toBePlaced.getRank() + 1 != beingPlacedOn.getRank())
         return false;
     return true;
+}
+
+
+string SolitaireGameLogic::toString() const{
+    string str = "------Organized Stacks-----\n";
+    for (int i = 0; i < allOrgStacks.size(); i++){
+        str += fileToString(allOrgStacks[i].getFile()) + ": " +  allOrgStacks[i].toString() + "\n";
+    }
+
+    str += "------DrawPile-----\n";
+    str += drawPile.toString() + "\n";
+
+    str += "------Piles-----\n";
+    for (int i = 0; i < allPiles.size(); i++){
+        str += allPiles[i].toString() + "\n";
+    }
+
+    return str;
+}
+
+ostream& operator << (ostream& outs, const SolitaireGameLogic& sol){
+    outs << sol.toString();
+    return outs;
 }

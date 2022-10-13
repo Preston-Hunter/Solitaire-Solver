@@ -18,10 +18,11 @@ int main() {
     SolitaireGameLogic sol = SolitaireGameLogic();
     vector<Card> vec = sol.createDeck();
     o.setCards(vec);
-    cout << o.toString() << endl;
+    //cout << o.toString() << endl;
 
+    cout << sol.toString() << endl;
 
-    test();
+    //test();
 
 
     return 0;

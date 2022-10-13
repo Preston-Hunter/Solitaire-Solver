@@ -14,6 +14,7 @@ enum cardFile{CLUBS, DIAMONDS, HEARTS, SPADES, NULLCARD};
 enum cardColor{RED, BLACK, NULLCOLOR};
 
 string fileToString(cardFile f);
+string fileToSimpleString(cardFile f);
 string rankToString(int r);
 string rankToSimpleString(int r);
 
@@ -50,6 +51,7 @@ public:
 
     string toStringBasic() const;
     string toString() const;
+    string toStringShowAll() const;
     friend ostream& operator << (ostream& outs, const Card& card);
 
     friend bool operator == (const Card& lhs, const Card& rhs);

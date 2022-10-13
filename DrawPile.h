@@ -6,6 +6,9 @@
 #define SOLITAIRE_SOLVER_DRAWPILE_H
 #include "vector"
 #include "Card.h"
+#include "optional"
+using std::optional;
+using std::make_optional;
 using std::vector;
 
 
@@ -13,7 +16,7 @@ class DrawPile {
 private:
     // all the cards in the draw pile of solitaire
     vector<Card> cards = vector<Card>();
-    int numCard;
+    int numCard = 0;
     //Represents what Card user/program is viewing from DrawPiles cards
     int currentIndex = 0;
 
@@ -24,6 +27,8 @@ public:
     int getNumCard() const;
     void setNumCard(int numCard);
 
+    optional<Card> getCardAtCurrentIndex();
+    optional<Card> getCardAtIndex(int ind);
     void removeCardAtCurrentIndex();
     void incrementCurrentIndex();
     void decrementCurrentIndex();

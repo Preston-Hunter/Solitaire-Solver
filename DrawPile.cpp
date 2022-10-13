@@ -4,12 +4,17 @@
 
 #include "DrawPile.h"
 #include "HelperFunctions.h"
+#include "optional"
+using std::optional;
+using std::make_optional;
+
 const vector<Card> &DrawPile::getCards() const {
     return cards;
 }
 
 void DrawPile::setCards(const vector<Card> &cards) {
     DrawPile::cards = cards;
+    numCard = cards.size();
 }
 
 int DrawPile::getNumCard() const {
@@ -23,6 +28,24 @@ void DrawPile::setNumCard(int numCard) {
 void DrawPile::removeCardAtCurrentIndex() {
     cards.erase(cards.begin() + currentIndex);
     decrementCurrentIndex();
+    //Note when list is empty, current index wll be -1
+    numCard--;
+}
+
+
+optional<Card> DrawPile::getCardAtCurrentIndex() {
+    //Check it is in bounds
+    if (!cards.empty())
+        return make_optional(cards[currentIndex]);
+    return std::nullopt;
+}
+
+
+optional<Card> DrawPile::getCardAtIndex(int ind){
+    //Check it is in bounds
+    if (ind < cards.size() && ind >= 0)
+        return make_optional(cards[ind]);
+    return std::nullopt;
 }
 
 /**Goes to next index in cards. If nextIndex is out of bounds (1 after last index)
@@ -78,4 +101,6 @@ ostream& operator << (ostream& outs, const DrawPile d){
 //todo go thru code and determine if all push backs should use copy constructor
 void DrawPile::addInitialCard(const Card& c) {
     cards.push_back(Card(c));
+    numCard++;
 }
+
