@@ -3,7 +3,7 @@
 //
 
 #include <ctime>
-#include "SolitaireGameLogic.h"
+#include "SolitaireClassInteractions.h"
 #include "algorithm"
 #include "random"
 #include "optional"
@@ -11,7 +11,7 @@ using std::optional;
 using std::shuffle;
 
 
-SolitaireGameLogic::SolitaireGameLogic() {
+SolitaireClassInteractions::SolitaireClassInteractions() {
     allPiles.push_back(p1);
     allPiles.push_back(p2);
     allPiles.push_back(p3);
@@ -32,7 +32,7 @@ SolitaireGameLogic::SolitaireGameLogic() {
     initializeGame();
 }
 
-void SolitaireGameLogic::initializeGame() {
+void SolitaireClassInteractions::initializeGame() {
     vector<Card> allCards = createDeck();
     std::srand(std::time(nullptr));
     //todo change source of randomness
@@ -54,13 +54,14 @@ void SolitaireGameLogic::initializeGame() {
     //Rest of cards go in loose draw pile
     for (; currentCardIndex < allCards.size(); currentCardIndex++){
         drawPile.addInitialCard(allCards[currentCardIndex]);
+        drawPile.revealTopCard();
     }
 
     //Game is now initialized
 
 }
 
-vector<Card> SolitaireGameLogic::createDeck(){
+vector<Card> SolitaireClassInteractions::createDeck(){
     vector<Card> cards = vector<Card>();
     for (int rank = 1; rank <= 13; rank++) {
         for (int file = 1; file <= 4; file++) {
@@ -71,7 +72,7 @@ vector<Card> SolitaireGameLogic::createDeck(){
 }
 
 
-bool SolitaireGameLogic::moveTopCardFromPileToOrgStack(Pile p, OrganizedStack org) {
+bool SolitaireClassInteractions::moveTopCardFromPileToOrgStack(Pile p, OrganizedStack org) {
     if(!p.getCards().empty()){
         bool added = org.addCardByFileAndRank(*p.getTopCard());
         //If the topcard was able to be added, remove it from pile and reveal the new topcard
@@ -86,7 +87,7 @@ bool SolitaireGameLogic::moveTopCardFromPileToOrgStack(Pile p, OrganizedStack or
     return false;
 }
 
-bool SolitaireGameLogic::moveTopCardFromOrgStackToPile(OrganizedStack org, Pile p) {
+bool SolitaireClassInteractions::moveTopCardFromOrgStackToPile(OrganizedStack org, Pile p) {
     if(!org.getCards().empty()){
         //todo copyTopCard method is inconsistent with pile's getTopCard. consider refactoring later
         bool added = p.addCardBasedOnTopCard(org.copyTopCard());
@@ -100,7 +101,7 @@ bool SolitaireGameLogic::moveTopCardFromOrgStackToPile(OrganizedStack org, Pile 
     return false;
 }
 
-bool SolitaireGameLogic::moveCardFromDrawToOrg(DrawPile draw, OrganizedStack org) {
+bool SolitaireClassInteractions::moveCardFromDrawToOrg(DrawPile draw, OrganizedStack org) {
     if(!draw.getCards().empty()){
         bool added = org.addCardByFileAndRank(*draw.getCardAtCurrentIndex());
         if (added){
@@ -111,7 +112,7 @@ bool SolitaireGameLogic::moveCardFromDrawToOrg(DrawPile draw, OrganizedStack org
     return false;
 }
 
-bool SolitaireGameLogic::moveCardFromDrawToPile(DrawPile draw, Pile p) {
+bool SolitaireClassInteractions::moveCardFromDrawToPile(DrawPile draw, Pile p) {
     if(!draw.getCards().empty()){
         bool added = p.addCardBasedOnTopCard(*draw.getCardAtCurrentIndex());
         if (added){
@@ -125,7 +126,7 @@ bool SolitaireGameLogic::moveCardFromDrawToPile(DrawPile draw, Pile p) {
 
 
 
-bool SolitaireGameLogic::moveCardFromDrawAtIndexToOrg(DrawPile draw, OrganizedStack org, int ind) {
+bool SolitaireClassInteractions::moveCardFromDrawAtIndexToOrg(DrawPile draw, OrganizedStack org, int ind) {
     if(!draw.getCards().empty()){
         bool added = org.addCardByFileAndRank(*draw.getCardAtIndex(ind));
         if (added){
@@ -136,7 +137,7 @@ bool SolitaireGameLogic::moveCardFromDrawAtIndexToOrg(DrawPile draw, OrganizedSt
     return false;
 }
 
-bool SolitaireGameLogic::moveCardFromDrawAtIndexToToPile(DrawPile draw, Pile p, int ind) {
+bool SolitaireClassInteractions::moveCardFromDrawAtIndexToToPile(DrawPile draw, Pile p, int ind) {
     if(!draw.getCards().empty()){
         bool added = p.addCardBasedOnTopCard(*draw.getCardAtIndex(ind));
         if (added){
@@ -148,7 +149,7 @@ bool SolitaireGameLogic::moveCardFromDrawAtIndexToToPile(DrawPile draw, Pile p, 
 }
 
 
-bool SolitaireGameLogic::canCardBePlacedOnTopOfOtherCard(const Card& toBePlaced, const Card& beingPlacedOn) {
+bool SolitaireClassInteractions::canCardBePlacedOnTopOfOtherCard(const Card& toBePlaced, const Card& beingPlacedOn) {
     if (toBePlaced.getColor() == beingPlacedOn.getColor())
         return false;
     if (toBePlaced.getRank() + 1 != beingPlacedOn.getRank())
@@ -157,7 +158,7 @@ bool SolitaireGameLogic::canCardBePlacedOnTopOfOtherCard(const Card& toBePlaced,
 }
 
 
-string SolitaireGameLogic::toString() const{
+string SolitaireClassInteractions::toString() const{
     string str = "------Organized Stacks-----\n";
     for (int i = 0; i < allOrgStacks.size(); i++){
         str += fileToString(allOrgStacks[i].getFile()) + ": " +  allOrgStacks[i].toString() + "\n";
@@ -174,7 +175,7 @@ string SolitaireGameLogic::toString() const{
     return str;
 }
 
-ostream& operator << (ostream& outs, const SolitaireGameLogic& sol){
+ostream& operator << (ostream& outs, const SolitaireClassInteractions& sol){
     outs << sol.toString();
     return outs;
 }

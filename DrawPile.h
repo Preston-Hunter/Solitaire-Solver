@@ -37,9 +37,12 @@ public:
 
     string toString() const;
 
+    //Helper for deck initialization
+    void revealTopCard();
+
     friend bool operator == (const DrawPile& lhs, const DrawPile& rhs);
     friend bool operator != (const DrawPile& lhs, const DrawPile& rhs);
-    friend ostream& operator << (ostream& outs, const DrawPile d);
+    friend ostream& operator << (ostream& outs, const DrawPile& d);
 
 };
 

@@ -2,14 +2,14 @@
 // Created by Preston Hunter on 10/9/2022.
 //
 
-#ifndef SOLITAIRE_SOLVER_SOLITAIREGAMELOGIC_H
-#define SOLITAIRE_SOLVER_SOLITAIREGAMELOGIC_H
+#ifndef SOLITAIRE_SOLVER_SOLITAIRECLASSINTERACTIONS_H
+#define SOLITAIRE_SOLVER_SOLITAIRECLASSINTERACTIONS_H
 #include "OrganizedStack.h"
 #include "Pile.h"
 #include "DrawPile.h"
 
 
-class SolitaireGameLogic {
+class SolitaireClassInteractions {
 private:
     //Initialize the organized stacks, which start empty and filled by player actions
     OrganizedStack diamondStack = OrganizedStack(DIAMONDS);
@@ -35,7 +35,7 @@ private:
     int numTurns = 0;
 public:
 
-    SolitaireGameLogic();
+    SolitaireClassInteractions();
     void initializeGame();
     static vector<Card> createDeck();
 
@@ -49,8 +49,8 @@ public:
 
     string toString() const;
 
-    friend ostream& operator << (ostream& outs, const SolitaireGameLogic& sol);
+    friend ostream& operator << (ostream& outs, const SolitaireClassInteractions& sol);
     };
 
 
-#endif //SOLITAIRE_SOLVER_SOLITAIREGAMELOGIC_H
+#endif //SOLITAIRE_SOLVER_SOLITAIRECLASSINTERACTIONS_H

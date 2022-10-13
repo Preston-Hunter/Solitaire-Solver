@@ -71,7 +71,7 @@ void DrawPile::decrementCurrentIndex() {
     currentIndex = 0;
 }
 
-
+//todo implement a marker to show where current index is
 string DrawPile::toString() const{
     string str = "";
     for (int i = 0; i < cards.size(); i++){
@@ -79,6 +79,12 @@ string DrawPile::toString() const{
     }
     //why does this still run without a crash when i dont include this return statement?
     return str;
+}
+
+void DrawPile::revealTopCard() {
+    if(!cards.empty()){
+        cards[cards.size() - 1].setRevealed(true);
+    }
 }
 
 bool operator == (const DrawPile& lhs, const DrawPile& rhs){
@@ -93,7 +99,7 @@ bool operator != (const DrawPile& lhs, const DrawPile& rhs){
     return true;
 }
 
-ostream& operator << (ostream& outs, const DrawPile d){
+ostream& operator << (ostream& outs, const DrawPile& d){
     outs << d.toString();
     return outs;
 }

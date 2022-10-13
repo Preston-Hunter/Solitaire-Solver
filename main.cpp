@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Card.h"
-#include "SolitaireGameLogic.h"
+#include "SolitaireClassInteractions.h"
 #include "TestCases.h"
 #include "random"
 #include <ctime>
@@ -12,14 +12,7 @@ using std::shuffle;
 using std::cout;
 using std::endl;
 int main() {
-    OrganizedStack o = OrganizedStack(DIAMONDS);
-    cout << char(4) << endl;
-
-    SolitaireGameLogic sol = SolitaireGameLogic();
-    vector<Card> vec = sol.createDeck();
-    o.setCards(vec);
-    //cout << o.toString() << endl;
-
+    SolitaireClassInteractions sol = SolitaireClassInteractions();
     cout << sol.toString() << endl;
 
     //test();
