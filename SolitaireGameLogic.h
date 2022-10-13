@@ -36,9 +36,9 @@ public:
 
     SolitaireGameLogic();
     void initializeGame();
-    vector<Card> createDeck();
+    static vector<Card> createDeck();
 
-    bool moveCardFromPileToOrgStack();
+    bool moveTopCardFromPileToOrgStack(Pile p, OrganizedStack org);
     bool moveCardFromOrgStackToPile();
     bool moveCardFromDrawToOrg();
     bool moveCardFromDrawToPile();

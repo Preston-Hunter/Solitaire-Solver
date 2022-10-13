@@ -6,10 +6,9 @@
 #define SOLITAIRE_SOLVER_PILE_H
 #include <vector>
 #include "Card.h"
-
-
-
+#include <optional>
 using std::vector;
+using std::optional;
 
 //A sub-stack is a selection of cards that start from anywhere in pile to the top card, where all cards must be revealed
 // Topcard is the Card object with highest index in cards
@@ -25,6 +24,9 @@ public:
 
     bool moveSubStackFromThisPileToOther(Pile other, int start);
     bool revealTopCard();
+
+    //Use optionals to return a single object type, leaves room for error return when cards list is empty
+    optional<Card> getTopCard();
 
     //helper methods
     bool removeCardsInRangeFromItoTop(int i);

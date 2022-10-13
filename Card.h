@@ -15,7 +15,7 @@ enum cardColor{RED, BLACK, NULLCOLOR};
 
 string fileToString(cardFile f);
 string rankToString(int r);
-
+string rankToSimpleString(int r);
 
 class Card {
 private:
@@ -48,6 +48,7 @@ public:
 
     cardColor fileToColor(cardFile f);
 
+    string toStringBasic() const;
     string toString() const;
     friend ostream& operator << (ostream& outs, const Card& card);
 

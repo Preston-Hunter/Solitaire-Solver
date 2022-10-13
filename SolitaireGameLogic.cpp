@@ -6,10 +6,25 @@
 #include "SolitaireGameLogic.h"
 #include "algorithm"
 #include "random"
+#include "optional"
+using std::optional;
 using std::shuffle;
 
 
 SolitaireGameLogic::SolitaireGameLogic() {
+    allPiles.push_back(p1);
+    allPiles.push_back(p2);
+    allPiles.push_back(p3);
+    allPiles.push_back(p4);
+    allPiles.push_back(p5);
+    allPiles.push_back(p6);
+    allPiles.push_back(p7);
+
+
+
+
+
+
     initializeGame();
 }
 
@@ -51,7 +66,9 @@ vector<Card> SolitaireGameLogic::createDeck(){
 }
 
 
-bool SolitaireGameLogic::moveCardFromPileToOrgStack() {
+bool SolitaireGameLogic::moveTopCardFromPileToOrgStack(Pile p, OrganizedStack org) {
+
+
     return false;
 }
 

@@ -67,6 +67,19 @@ string rankToString(int r){
         return "NULL";
 }
 
+string rankToSimpleString(int r){
+    if (r > 0 && r < 11)
+        return std::to_string(r);
+    else if (r == 13)
+        return "K";
+    else if (r == 12)
+        return "Q";
+    else if (r == 11)
+        return "J";
+    else
+        return "0";
+}
+
 
 
 
@@ -116,10 +129,35 @@ void Card::setRevealed(bool revealed) {
 
 string Card::toString() const{
     string str = "";
-    str += rankToString(getRank()) + " of " + fileToString(getFile());
+
+    string file = "";
+    switch (this->file) {
+        case (SPADES):
+            file = char(6);
+            break;
+        case (HEARTS):
+            file = char(3);
+            break;
+        case (DIAMONDS):
+            file = char(4);
+            break;
+        case (CLUBS):
+            file = char(5);
+            break;
+        default:
+            file = "?";
+
+    }
+
+    str += rankToSimpleString(getRank()) + file;
     return str;
 }
 
+string Card::toStringBasic() const{
+    string str = "";
+    str += rankToString(getRank()) + " of " + fileToString(getFile());
+    return str;
+}
 
 
 

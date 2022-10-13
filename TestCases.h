@@ -15,4 +15,9 @@ bool testCardEquality();
 
 bool testOrganizedStackEquality();
 
+bool testDrawPileEquality();
+
+bool testPileEquality();
+
+bool testVectorOfCardsEquality();
 

@@ -7,6 +7,8 @@
 #include "OrganizedStack.h"
 #include "DrawPile.h"
 #include "Pile.h"
+#include "HelperFunctions.h"
+
 using std::cout;
 using std::endl;
 
@@ -17,6 +19,38 @@ bool testCard(){
     if (c.toString() == "1 of CLUBS")
         return true;
     return false;
+}
+
+bool testVectorOfCardsEquality(){
+    vector<Card> v1 = vector<Card>();
+    vector<Card> v2 = vector<Card>();
+
+    Card c(1, 3, true);
+    Card c2(2, 3, false);
+    Card c3(1,3,false);
+    Card c4(3, 5, true);
+
+    Card c5(2, 3, true);
+    Card c6(3,3,true);
+
+    v1.push_back(c);
+    v1.push_back(c2);
+    v2.push_back(c3);
+    v2.push_back(c4);
+
+    if (cardVectorsEqual(v1,v2))
+        return false;
+
+    //Reset v2
+    v2 = vector<Card>();
+    v2.push_back(c);
+    v2.push_back(c2);
+
+    //Vectors should be equal so this should evaluate to false and not trigger if statement
+    if (!cardVectorsEqual(v1,v2))
+        return false;
+
+    return true;
 }
 
 bool testCardEquality(){
@@ -147,10 +181,11 @@ bool testPileEquality(){
 int test() {
     std::cout << "Hello, Test World!" << std::boolalpha <<std::endl << std::endl;
 
+    cout << "Vector of cards comparison success: " << testVectorOfCardsEquality() << std::endl;
     cout << "Card test success: " << testCard() << endl;
     cout << "Card equality test success: " << testCardEquality() << endl;
     cout << "Organized stack equality test success: " << testOrganizedStackEquality() << endl;
     cout << "DrawPile equality test success: " << testDrawPileEquality() << endl;
-    cout << "Pile equality test success: " << "" << endl;
+    cout << "Pile equality test success: " << testPileEquality() << endl;
     return 0;
 }

@@ -116,6 +116,13 @@ bool Pile::canCardBePlacedOnTopOfOtherCard(const Card& toBePlaced, const Card& b
     return true;
 }
 
+
+optional<Card> Pile::getTopCard(){
+    if (cards.empty())
+        return std::nullopt;
+    return std::make_optional(cards[cards.size() - 1]);
+}
+
 const vector<Card> &Pile::getCards() const {
     return cards;
 }
