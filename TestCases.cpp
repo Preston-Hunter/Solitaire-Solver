@@ -58,12 +58,12 @@ bool testOrganizedStackEquality(){
     o2.addCardByFileAndRank(c);
     o2.addCardByFileAndRank(c2);
     o2.addCardByFileAndRank(c3);
-    cout << o1 << endl << o2 << endl;
+    // Values of o1 and o2
+    // cout << endl << o1 << endl << o2 << endl;
 
     bool s = o1 == o2;
 
     if (!s){
-        cout << "uhh" << endl;
         return false;
     }
     return true;

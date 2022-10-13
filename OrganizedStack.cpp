@@ -88,7 +88,6 @@ Card OrganizedStack::removeAndReturnTopCard() {
 bool operator == (const OrganizedStack& lhs, const OrganizedStack& rhs){
     //weird error
     if (cardVectorsEqual(lhs.getCards(), rhs.getCards()) && (lhs.getFile() == rhs.getFile())) {
-        cout << "evalled to true" << endl;
         return true;
     }
     return false;
