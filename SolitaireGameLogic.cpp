@@ -67,20 +67,42 @@ vector<Card> SolitaireGameLogic::createDeck(){
 
 
 bool SolitaireGameLogic::moveTopCardFromPileToOrgStack(Pile p, OrganizedStack org) {
-
+    if(!p.getCards().empty()){
+        bool added = org.addCardByFileAndRank(*p.getTopCard());
+        //If the topcard was able to be added, remove it from pile and reveal the new topcard
+        if (added){
+            p.removeTopCard();
+            p.revealTopCard();
+            return true;
+        }
+        //otherwise card was not added organized stack org, so return false as method performed nothing
+    }
 
     return false;
 }
 
-bool SolitaireGameLogic::moveCardFromOrgStackToPile() {
+bool SolitaireGameLogic::moveTopCardFromOrgStackToPile(OrganizedStack org, Pile p) {
+    if(!org.getCards().empty()){
+        //todo copyTopCard method is inconsistent with pile's getTopCard. consider refactoring later
+        bool added = p.addCardBasedOnTopCard(org.copyTopCard());
+        //If the topcard was able to be added, remove it from pile and reveal the new topcard
+        if (added){
+            org.removeTopCard();
+            return true;
+        }
+        //otherwise card was not added to pile p, so return false as method performed nothing
+    }
     return false;
 }
 
-bool SolitaireGameLogic::moveCardFromDrawToOrg() {
+bool SolitaireGameLogic::moveCardFromDrawToOrg(DrawPile draw, OrganizedStack org) {
+//    if(!draw.getCards().empty()){
+//        //bool added = org.addCardByFileAndRank()
+//    }
     return false;
 }
 
-bool SolitaireGameLogic::moveCardFromDrawToPile() {
+bool SolitaireGameLogic::moveCardFromDrawToPile(DrawPile draw, Pile p) {
     return false;
 }
 

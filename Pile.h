@@ -24,7 +24,7 @@ public:
 
     bool moveSubStackFromThisPileToOther(Pile other, int start);
     bool revealTopCard();
-
+    bool removeTopCard();
     //Use optionals to return a single object type, leaves room for error return when cards list is empty
     optional<Card> getTopCard();
 

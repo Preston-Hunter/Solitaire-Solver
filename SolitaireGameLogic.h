@@ -39,9 +39,9 @@ public:
     static vector<Card> createDeck();
 
     bool moveTopCardFromPileToOrgStack(Pile p, OrganizedStack org);
-    bool moveCardFromOrgStackToPile();
-    bool moveCardFromDrawToOrg();
-    bool moveCardFromDrawToPile();
+    bool moveTopCardFromOrgStackToPile(OrganizedStack org, Pile p);
+    bool moveCardFromDrawToOrg(DrawPile draw, OrganizedStack org);
+    bool moveCardFromDrawToPile(DrawPile draw, Pile p);
     bool canCardBePlacedOnTopOfOtherCard(const Card& toBePlaced, const Card& beingPlacedOn);
 
 };

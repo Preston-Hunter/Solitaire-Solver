@@ -13,14 +13,14 @@ using std::cout;
 using std::endl;
 int main() {
     OrganizedStack o = OrganizedStack(DIAMONDS);
-    //cout << o.toString() << endl;
     cout << char(4) << endl;
 
     SolitaireGameLogic sol = SolitaireGameLogic();
     vector<Card> vec = sol.createDeck();
-    for(Card & i : vec){
-        cout << i << endl;
-    }
+    o.setCards(vec);
+    cout << o.toString() << endl;
+
+
     test();
 
 

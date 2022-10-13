@@ -16,9 +16,15 @@ bool Pile::addCardBasedOnTopCard(const Card& c) {
     if (!c.isRevealed())
         return false;
 
-    if (!canCardBePlacedOnTopOfOtherCard(c, cards[cards.size() - 1]))
-        return false;
-
+    if (cards.empty()){
+        //If c is a king then can be placed in empty pile
+        if (c.getRank() != 13)
+            return false;
+    }
+    else {
+        if (!canCardBePlacedOnTopOfOtherCard(c, cards[cards.size() - 1]))
+            return false;
+    }
     addCard(c);
     return true;
 }
@@ -80,6 +86,16 @@ bool Pile::revealTopCard() {
     return false;
 }
 
+
+//removes top card if it exists
+bool Pile::removeTopCard() {
+    if (!cards.empty()){
+        removeCardsInRangeFromItoTop(cards.size() - 1);
+        return true;
+    }
+    return false;
+}
+
 //Bounds are inclusive
 bool Pile::copySubStackOntoAnotherPile(Pile copyOnto, int start) {
     //a substack always goes to the topcard, which has the last index available in cards
@@ -89,17 +105,26 @@ bool Pile::copySubStackOntoAnotherPile(Pile copyOnto, int start) {
     if (start > cards.size() - 1 || end > cards.size() - 1 || end < start || start < 0){
         return false;
     }
-    //Check if initial card can be placed on Topcard of copyOnto
-    if (!canCardBePlacedOnTopOfOtherCard(cards[start], copyOnto.getCards()[copyOnto.getCards().size() - 1]))
-        return false;
-    //Check that initial card is revealed. If not then we do not move it
-    // if we wanted to be extra we would check all cards in the range. but due to how solitaire is initialized
-    // (as a game and programmatically) it will never be the case that a revealed card has an unrevealed card on top of it
-    // and that a revealed card has another revealed card on top of it that legally cant be placed on top of
-    // said card
-    if (!cards[start].isRevealed())
-        return false;
 
+    //If copyOnto is empty, then only a king can be placed on it
+    if (copyOnto.getCards().empty()){
+        if (cards[start].getRank() != 13)
+            return false;
+        //If this if statement isn't triggered, then cards[start] is a king. So the substack that starts on it
+        // can be copied to copyOnto
+    }
+    else {
+        //Check if initial card can be placed on Topcard of copyOnto (which exists as copyOnto.cards is not empty)
+        if (!canCardBePlacedOnTopOfOtherCard(cards[start], copyOnto.getCards()[copyOnto.getCards().size() - 1]))
+            return false;
+        //Check that initial card is revealed. If not then we do not move it
+        // if we wanted to be extra we would check all cards in the range. but due to how solitaire is initialized
+        // (as a game and programmatically) it will never be the case that a revealed card has an unrevealed card on top of it
+        // and that a revealed card has another revealed card on top of it that legally cant be placed on top of
+        // said card
+        if (!cards[start].isRevealed())
+            return false;
+    }
     // Copy all cards from cards on top of copyOnto
     for (int ind = start; ind <= end; ind++){
         copyOnto.addCard(cards[ind]);
@@ -112,6 +137,8 @@ bool Pile::canCardBePlacedOnTopOfOtherCard(const Card& toBePlaced, const Card& b
     if (toBePlaced.getColor() == beingPlacedOn.getColor())
         return false;
     if (toBePlaced.getRank() + 1 != beingPlacedOn.getRank())
+        return false;
+    if (!toBePlaced.isRevealed() || !beingPlacedOn.isRevealed())
         return false;
     return true;
 }

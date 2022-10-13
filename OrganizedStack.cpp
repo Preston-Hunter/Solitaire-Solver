@@ -36,7 +36,8 @@ void OrganizedStack::addCard(Card c) {
 }
 
 void OrganizedStack::removeTopCard() {
-    cards.pop_back();
+    if (!cards.empty())
+        cards.pop_back();
 }
 
 Card OrganizedStack::copyTopCard() {
@@ -60,11 +61,15 @@ string OrganizedStack::toString() const{
 
 
 bool OrganizedStack::addCardByFileAndRank(const Card& c) {
+    if (!c.isRevealed())
+        return false;
+
     if (c.getFile() == this->file){
         if (c.getRank() == 1 && cards.empty())
             addCard(c);
         else if (cards.empty())
             return false;
+        //Card being placed into organized stack should have rank one higher than the topCard of organized stack
         else if (c.getRank() - cards[cards.size()-1].getRank() == 1)
             addCard(c);
         else
