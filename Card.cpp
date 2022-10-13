@@ -9,7 +9,33 @@ using std::ostream;
 using std::string;
 using std::cout;
 
+Card::Card(int rank, int file, bool rev) {
+    this->rank = rank;
+    this->setFile(file);
+    revealed = rev;
+    this->color = fileToColor(getFile());
+}
 
+Card::Card(int rank, cardFile file, bool rev) {
+    this->rank = rank;
+    this->setFile(file);
+    revealed = rev;
+    this->color = fileToColor(getFile());
+}
+
+Card::Card(const Card &toCopy) {
+    this->file = toCopy.file;
+    this->rank = toCopy.rank;
+    this->color = toCopy.color;
+    this->revealed = toCopy.revealed;
+}
+
+Card::Card(){
+    file = NULLCARD;
+    color = NULLCOLOR;
+    rank = 0;
+    revealed = true;
+}
 
 string fileToString(cardFile f){
     string str = "";
@@ -42,31 +68,7 @@ string rankToString(int r){
 }
 
 
-Card::Card(int rank, int file, bool rev) {
-    this->rank = rank;
-    this->setFile(file);
-    revealed = rev;
-    this->color = fileToColor(getFile());
-}
 
-Card::Card(int rank, cardFile file, bool rev) {
-    this->rank = rank;
-    this->setFile(file);
-    revealed = rev;
-    this->color = fileToColor(getFile());
-}
-
-Card::Card(const Card &toCopy) {
-    this->file = toCopy.file;
-    this->rank = toCopy.rank;
-    this->color = toCopy.color;
-}
-
-Card::Card(){
-    file = NULLCARD;
-    color = NULLCOLOR;
-    rank = 0;
-}
 
 int Card::getRank() const {
     return rank;
@@ -147,7 +149,8 @@ bool operator == (const Card& lhs, const Card& rhs){
 bool operator!=(const Card &lhs, const Card &rhs) {
     cout <<"Card eval: " <<((lhs.getRank() == rhs.getRank()) && (lhs.getFile() == rhs.getFile()) && (lhs.isRevealed() == rhs.isRevealed())) << std::endl;
     cout  << "Revealed equality: " << (lhs.isRevealed() == rhs.isRevealed()) << std::endl;
-    cout << std::boolalpha <<"Revealed values: " << rhs.isRevealed() << lhs.isRevealed() << std::endl;
+    cout << std::noboolalpha <<"Revealed values: " << rhs.isRevealed() << "vs" << lhs.isRevealed() << std::endl;
+    cout << true << std::endl;
     if ((lhs.getRank() == rhs.getRank()) && (lhs.getFile() == rhs.getFile()) && (lhs.isRevealed() == rhs.isRevealed()))
         return false;
     return true;
