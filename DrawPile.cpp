@@ -49,7 +49,7 @@ void DrawPile::decrementCurrentIndex() {
 }
 
 
-string DrawPile::toString(){
+string DrawPile::toString() const{
     string str = "";
     for (int i = 0; i < cards.size(); i++){
         str += cards[i].toString() + " | ";
@@ -70,12 +70,12 @@ bool operator != (const DrawPile& lhs, const DrawPile& rhs){
     return true;
 }
 
-ostream& operator << (ostream& outs, DrawPile d){
+ostream& operator << (ostream& outs, const DrawPile d){
     outs << d.toString();
     return outs;
 }
 
 //todo go thru code and determine if all push backs should use copy constructor
-void DrawPile::addInitialCard(Card c) {
+void DrawPile::addInitialCard(const Card& c) {
     cards.push_back(Card(c));
 }

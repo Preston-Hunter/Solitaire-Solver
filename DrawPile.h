@@ -28,13 +28,13 @@ public:
     void incrementCurrentIndex();
     void decrementCurrentIndex();
 
-    void addInitialCard(Card c);
+    void addInitialCard(const Card& c);
 
-    string toString();
+    string toString() const;
 
     friend bool operator == (const DrawPile& lhs, const DrawPile& rhs);
     friend bool operator != (const DrawPile& lhs, const DrawPile& rhs);
-    friend ostream& operator << (ostream& outs, DrawPile d);
+    friend ostream& operator << (ostream& outs, const DrawPile d);
 
 };
 

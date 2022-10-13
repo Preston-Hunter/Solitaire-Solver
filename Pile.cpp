@@ -12,6 +12,10 @@ void Pile::addCard(Card c) {
 
 bool Pile::addCardBasedOnTopCard(const Card& c) {
 
+    //Dont add card if it is not revealed
+    if (!c.isRevealed())
+        return false;
+
     if (!canCardBePlacedOnTopOfOtherCard(c, cards[cards.size() - 1]))
         return false;
 
@@ -120,7 +124,7 @@ void Pile::setCards(const vector<Card> &cards) {
     Pile::cards = cards;
 }
 
-string Pile::toString() {
+string Pile::toString() const{
     string str = "";
     for (int i = 0; i < cards.size(); i++){
         str += cards[i].toString() + " | ";
@@ -142,7 +146,7 @@ bool operator != (const Pile& lhs, const Pile& rhs){
 }
 
 
-ostream& operator << (ostream& outs, Pile& p){
+ostream& operator << (ostream& outs, const Pile& p){
     outs << p.toString();
     return outs;
 }

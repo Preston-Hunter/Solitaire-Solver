@@ -12,9 +12,6 @@ bool cardVectorsEqual(const vector<Card>& v1,  const vector<Card>& v2){
         return false;
 
     for (int i = 0; i < v1.size(); i++){
-        std::cout << "here" << std::endl;
-        std::cout << v1[i] << " vs " << v2[i] << std::endl;
-        //TODO bug: this evaluates differently in debug vs standard runtime
         if (v1[i] != v2[i])
             return false;
     }

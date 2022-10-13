@@ -33,11 +33,11 @@ public:
     bool areCardsRevealedInRangeInclusive(int i, int j);
 
 
-    string toString();
+    string toString() const;
     friend bool operator != (const Pile& lhs, const Pile& rhs);
     friend bool operator == (const Pile& lhs, const Pile& rhs);
 
-    friend ostream& operator << (ostream& outs, Pile& p);
+    friend ostream& operator << (ostream& outs, const Pile& p);
 };
 
 

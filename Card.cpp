@@ -147,10 +147,6 @@ bool operator == (const Card& lhs, const Card& rhs){
 }
 
 bool operator!=(const Card &lhs, const Card &rhs) {
-    cout <<"Card eval: " <<((lhs.getRank() == rhs.getRank()) && (lhs.getFile() == rhs.getFile()) && (lhs.isRevealed() == rhs.isRevealed())) << std::endl;
-    cout  << "Revealed equality: " << (lhs.isRevealed() == rhs.isRevealed()) << std::endl;
-    cout << std::noboolalpha <<"Revealed values: " << rhs.isRevealed() << "vs" << lhs.isRevealed() << std::endl;
-    cout << true << std::endl;
     if ((lhs.getRank() == rhs.getRank()) && (lhs.getFile() == rhs.getFile()) && (lhs.isRevealed() == rhs.isRevealed()))
         return false;
     return true;
